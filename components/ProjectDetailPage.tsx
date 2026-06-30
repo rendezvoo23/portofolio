@@ -8,27 +8,26 @@ export function ProjectDetailPage({ project }: { project: Project }) {
 
   return (
     <main>
-      <section className="mx-auto max-w-[1440px] px-6 pb-16 pt-10 md:px-10 md:pb-24 md:pt-16">
-        <Link className="nav-link focus-ring text-sm text-paper/60" href="/#projects">
-          ← Назад к проектам
+      <section className="mx-auto max-w-[1440px] px-6 pb-16 pt-28 md:px-10 md:pb-24 md:pt-32">
+        <Link
+          aria-label="Назад к проектам"
+          className="back-button focus-ring"
+          href="/#projects"
+        >
+          <span aria-hidden="true">←</span>
         </Link>
 
-        <div className="mt-14 grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-20">
+        <div className="mt-16 grid gap-10 md:grid-cols-[1fr_0.85fr] md:items-end md:gap-20">
+          <h1 className="text-7xl font-normal leading-none text-paper md:text-9xl">
+            {project.title}
+          </h1>
           <div>
-            <p className="section-kicker">{project.category}</p>
-            <h1 className="mt-5 text-7xl font-normal leading-none md:text-9xl">
-              {project.title}
-            </h1>
-            <p className="mt-8 max-w-3xl text-2xl leading-snug text-paper/75 md:text-4xl">
+            <p className="max-w-3xl text-2xl leading-snug text-paper md:text-4xl">
               {project.subtitle}
             </p>
-          </div>
-
-          <div className="grid content-end gap-5 text-sm text-paper/60 md:pt-20">
-            <Meta label="Роль" value={project.role} />
-            {project.status ? <Meta label="Статус" value={project.status} /> : null}
-            <Meta label="Категория" value={project.category} />
-            <Meta label="Период" value={project.year} />
+            <p className="mt-6 text-base text-paper/55">
+              {project.year}{project.status ? ` · ${project.status}` : ""}
+            </p>
           </div>
         </div>
 
@@ -59,21 +58,19 @@ export function ProjectDetailPage({ project }: { project: Project }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-6 py-16 md:px-10 md:py-24">
-        <div className="ml-auto grid max-w-5xl gap-12">
-          <TextBlock title="Обзор" text={project.overview} />
-          <TextBlock title="Задача" text={project.task} />
+      <section className="mx-auto max-w-[1440px] px-6 pb-3 pt-16 md:px-10 md:pb-4 md:pt-24">
+        <div className="ml-auto grid max-w-5xl gap-20 md:gap-28">
+          <TextBlock title="о проекте" text={project.overview} />
+          <TextBlock title="задача" text={project.task} />
           <div>
-            <h2 className="detail-title">Что сделано</h2>
-            <ul className="mt-5 grid gap-3 text-xl leading-relaxed text-paper/70">
+            <h2 className="text-3xl font-normal leading-tight text-paper md:text-5xl">что сделано</h2>
+            <ul className="mt-8 grid gap-4 text-xl leading-relaxed text-paper md:text-2xl">
               {project.whatWasDone.map((item) => (
-                <li className="border-b border-line pb-3" key={item}>
-                  {item}
-                </li>
+                <li key={item}>{item}</li>
               ))}
             </ul>
           </div>
-          <TextBlock title="Результат" text={project.result} />
+          <TextBlock title="результат" text={project.result} />
         </div>
       </section>
 
@@ -97,15 +94,14 @@ export function ProjectDetailPage({ project }: { project: Project }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1440px] px-6 py-20 md:px-10 md:py-28">
-        <div className="border border-line p-6 md:p-10">
-          <p className="section-kicker">Новый проект</p>
-          <div className="mt-8 flex flex-col justify-between gap-8 md:flex-row md:items-end">
+      <section className="mx-auto max-w-[1440px] px-6 pb-20 pt-3 md:px-10 md:pb-28 md:pt-4">
+        <div className="rounded-[32px] bg-paper p-6 text-ink md:p-10">
+          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
             <h2 className="max-w-4xl text-4xl font-normal leading-tight md:text-7xl">
-              Хотите похожий продукт?
+              хотите похожий продукт?
             </h2>
-            <Link className="button-primary focus-ring" href="/#contact">
-              Обсудить проект
+            <Link className="button-dark focus-ring" href="/#contact">
+              обсудить проект
             </Link>
           </div>
         </div>
@@ -114,20 +110,11 @@ export function ProjectDetailPage({ project }: { project: Project }) {
   );
 }
 
-function Meta({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="grid grid-cols-[96px_1fr] gap-4 border-b border-line pb-3">
-      <span className="text-paper/35">{label}:</span>
-      <span>{value}</span>
-    </div>
-  );
-}
-
 function TextBlock({ title, text }: { title: string; text: string }) {
   return (
     <div>
-      <h2 className="detail-title">{title}</h2>
-      <p className="mt-5 max-w-4xl text-xl leading-relaxed text-paper/70">
+      <h2 className="text-3xl font-normal leading-tight text-paper md:text-5xl">{title}</h2>
+      <p className="mt-8 max-w-4xl text-xl leading-relaxed text-paper md:text-2xl">
         {text}
       </p>
     </div>

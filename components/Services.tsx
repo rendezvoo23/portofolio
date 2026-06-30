@@ -32,19 +32,15 @@ export function Services() {
       id="services"
     >
       <div className="section-grid">
-        <div>
-          <p className="section-kicker">Услуги</p>
-          <h2 className="section-title mt-3">Что я могу сделать</h2>
-        </div>
-        <div className="grid gap-px border border-line bg-line sm:grid-cols-2">
-          {services.map((service) => (
-            <article className="flex min-h-[220px] flex-col bg-ink p-5 md:p-7" key={service.title}>
-              <h3 className="min-h-[72px] text-2xl font-normal leading-tight">
-                {service.title}
-              </h3>
-              <p className="mt-5 text-base leading-relaxed text-paper/60">
-                {service.text}
-              </p>
+        <h2 className="section-title">что я могу сделать</h2>
+        <div className="info-list">
+          {services.map((service, index) => (
+            <article className="info-row" key={service.title}>
+              <span className="info-row-number">0{index + 1}</span>
+              <div className="info-row-copy">
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+              </div>
             </article>
           ))}
         </div>

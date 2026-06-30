@@ -151,7 +151,7 @@ function ImageMedia({
   className?: string;
 }) {
   return (
-    <div className={`overflow-hidden rounded-[12px] ${getImageCanvasClass(src)} ${className}`}>
+    <div className={`overflow-hidden rounded-[24px] ${getImageCanvasClass(src)} ${className}`}>
       <img
         alt={alt}
         className={`h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"} ${getImageInsetClass(src)}`}
@@ -163,7 +163,11 @@ function ImageMedia({
 }
 
 function getImageCanvasClass(src: string) {
-  if (src.includes("whyspent_mockup") || src.includes("whyspent_cover")) {
+  if (src.includes("whyspent_mockup")) {
+    return "bg-white";
+  }
+
+  if (src.includes("whyspent_cover")) {
     return "bg-[#1f1f1f]";
   }
 

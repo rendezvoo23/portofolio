@@ -1,31 +1,92 @@
-import Link from "next/link";
+"use client";
 
-const navItems = [
-  { href: "/#projects", label: "Проекты" },
-  { href: "/#services", label: "Услуги" },
-  { href: "/#about", label: "Обо мне" },
-  { href: "/#contact", label: "Контакты" }
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+const menuItems = [
+  { href: "/#projects", label: "проекты" },
+  { href: "/#about", label: "обо мне" },
+  { href: "/#contact", label: "контакты" }
 ];
 
 export function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
+
+  const closeMenu = () => setIsOpen(false);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-ink/95 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-6 py-4 md:px-10">
-        <Link className="focus-ring text-sm text-paper" href="/" aria-label="На главную">
-          Семен Бедункевич
-        </Link>
+    <header className={`site-header ${isOpen ? "is-menu-open" : ""}`}>
+      <Link
+        aria-label="На главную"
+        className="site-brand focus-ring"
+        href="/"
+        onClick={closeMenu}
+      >
+        Семен Бедункевич
+      </Link>
 
-        <nav className="hidden items-center gap-6 text-sm text-paper/65 lg:flex" aria-label="Главная навигация">
-          {navItems.map((item) => (
-            <Link className="nav-link focus-ring" href={item.href} key={item.href}>
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+      <div
+        aria-hidden={!isOpen}
+        className={`menu-dismiss ${isOpen ? "is-open" : ""}`}
+        onClick={closeMenu}
+      />
 
-        <Link className="focus-ring text-sm text-paper underline-offset-4 hover:underline" href="/#contact">
-          Написать
-        </Link>
+      <div className={`menu-shell ${isOpen ? "is-open" : ""}`}>
+        <button
+          aria-controls="site-menu"
+          aria-expanded={isOpen}
+          aria-label={isOpen ? "Закрыть меню" : "Открыть меню"}
+          className={`menu-button ${isOpen ? "is-open" : ""}`}
+          onClick={() => setIsOpen((value) => !value)}
+          type="button"
+        >
+          <span>{isOpen ? "закрыть" : "меню"}</span>
+          <span aria-hidden="true" className="menu-symbol">
+            <span />
+            <span />
+          </span>
+        </button>
+
+        <aside
+          aria-hidden={!isOpen}
+          className="menu-drawer-content"
+          id="site-menu"
+          role="dialog"
+        >
+          <nav aria-label="Меню" className="menu-nav">
+            {menuItems.map((item) => (
+              <Link
+                className="menu-link focus-ring"
+                href={item.href}
+                key={item.href}
+                onClick={closeMenu}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="menu-footer">
+            <a href="mailto:ssbedunkevich@edu.hse.ru">email</a>
+            <a href="https://t.me/rndzvoo" rel="noreferrer" target="_blank">
+              telegram ↗
+            </a>
+          </div>
+        </aside>
       </div>
     </header>
   );

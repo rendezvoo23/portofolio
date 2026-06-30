@@ -20,22 +20,19 @@ const steps = [
 export function Process() {
   return (
     <section className="mx-auto max-w-[1440px] px-6 py-20 md:px-10 md:py-28">
-      <div className="mb-10">
-        <p className="section-kicker">Процесс</p>
-        <h2 className="section-title mt-3">Как проходит работа</h2>
-      </div>
-      <div className="grid gap-px border border-line bg-line md:grid-cols-4">
-        {steps.map((step, index) => (
-          <article className="bg-ink p-5 md:min-h-[280px] md:p-7" key={step.title}>
-            <p className="text-sm text-paper/35">0{index + 1}</p>
-            <h3 className="mt-14 text-2xl font-normal leading-tight">
-              {step.title}
-            </h3>
-            <p className="mt-5 text-base leading-relaxed text-paper/60">
-              {step.text}
-            </p>
-          </article>
-        ))}
+      <div className="section-grid">
+        <h2 className="section-title">как проходит работа</h2>
+        <div className="info-list">
+          {steps.map((step, index) => (
+            <article className="info-row" key={step.title}>
+              <span className="info-row-number">0{index + 1}</span>
+              <div className="info-row-copy">
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

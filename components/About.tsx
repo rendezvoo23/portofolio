@@ -6,10 +6,7 @@ export function About() {
     >
       <div className="section-grid">
         <div>
-          <p className="section-kicker">Обо мне</p>
-          <h2 className="mt-3 max-w-3xl text-3xl font-normal leading-tight md:text-5xl">
-            Обо мне
-          </h2>
+          <h2 className="section-title">обо мне</h2>
         </div>
         <div>
           <p className="max-w-5xl text-2xl font-normal leading-snug text-paper md:text-4xl">

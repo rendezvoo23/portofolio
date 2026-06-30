@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Семен Бедункевич — портфолио",
@@ -11,11 +10,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru">
+    <html data-scroll-behavior="smooth" lang="ru">
       <body>
         <Header />
         {children}
-        <Footer />
       </body>
     </html>
   );
