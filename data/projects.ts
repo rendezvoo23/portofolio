@@ -157,7 +157,7 @@ export const projects: Project[] = [
   {
     slug: "trv",
     title: "TRV",
-    cardTitle: "TRV — витрина музыкального лейбла",
+    cardTitle: "TRV — витрина лейбла",
     subtitle: "Витрина релизов, артистов и мероприятий музыкального лейбла",
     role: "Разработчик",
     status: "В разработке",

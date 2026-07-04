@@ -1,49 +1,41 @@
+import { AccordionList } from "@/components/AccordionList";
+
 const services = [
   {
     title: "Telegram-боты",
-    text: "Боты для заявок, уведомлений, простых процессов и общения с пользователями."
+    text: "боты для заявок, уведомлений, автоматизации бизнес-процессов и общения с пользователями."
   },
   {
     title: "Telegram Mini Apps",
-    text: "Небольшие приложения внутри Telegram: кабинеты, каталоги, формы и панели."
+    text: "приложения внутри Telegram для личных кабинетов, каталогов, форм и рабочих панелей."
   },
   {
     title: "Запуск первой версии продукта",
-    text: "Собираю первую рабочую версию, чтобы проверить идею или показать продукт клиентам."
+    text: "собираю первую рабочую версию, чтобы проверить идею или показать продукт клиентам."
   },
   {
     title: "Внутренние инструменты",
-    text: "Панели, рабочие сервисы и небольшая автоматизация для команды."
+    text: "панели, рабочие сервисы и автоматизация процессов для команды."
   },
   {
     title: "Лендинги и продуктовые страницы",
-    text: "Простые страницы для продукта, проекта или личного бренда."
+    text: "лендинги и продуктовые страницы с продуманной структурой, дизайном и адаптивной версткой."
   },
   {
     title: "Дизайн интерфейсов",
-    text: "Макеты, прототипы и понятная структура экранов в Figma."
+    text: "макеты, прототипы и понятная структура экранов в Figma."
   }
 ];
 
 export function Services() {
   return (
     <section
-      className="mx-auto max-w-[1440px] px-6 py-20 md:px-10 md:py-28"
+      className="mx-auto max-w-[1440px] px-5 py-14 md:px-10 md:py-28"
       id="services"
     >
-      <div className="section-grid">
-        <h2 className="section-title">что я могу сделать</h2>
-        <div className="info-list">
-          {services.map((service, index) => (
-            <article className="info-row" key={service.title}>
-              <span className="info-row-number">0{index + 1}</span>
-              <div className="info-row-copy">
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+      <h2 className="portfolio-heading">что я могу сделать</h2>
+      <div className="ml-auto mt-8 max-w-5xl md:mt-20">
+        <AccordionList items={services} />
       </div>
     </section>
   );

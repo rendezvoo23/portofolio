@@ -7,7 +7,7 @@ export function ProjectCard({ project }: { project: Project }) {
     <Link className="project-list-item group focus-ring" href={`/projects/${project.slug}`}>
       <article>
         <div className="project-list-heading">
-          <h3 className="text-3xl font-normal leading-tight md:text-5xl">
+          <h3 className="portfolio-heading">
             {project.cardTitle}
           </h3>
           <span aria-hidden="true" className="project-arrow">↗</span>

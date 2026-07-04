@@ -11,6 +11,7 @@ const menuItems = [
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLogoTurned, setIsLogoTurned] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -32,11 +33,20 @@ export function Header() {
     <header className={`site-header ${isOpen ? "is-menu-open" : ""}`}>
       <Link
         aria-label="На главную"
-        className="site-brand focus-ring"
+        className={`site-brand focus-ring ${isLogoTurned ? "is-turned" : ""}`}
         href="/"
-        onClick={closeMenu}
+        onClick={() => {
+          setIsLogoTurned((value) => !value);
+          closeMenu();
+        }}
       >
-        Семен Бедункевич
+        <img
+          alt=""
+          className="site-brand-logo"
+          height="66"
+          src="/simon-bedunkevich-logo.svg"
+          width="56"
+        />
       </Link>
 
       <div
@@ -81,7 +91,7 @@ export function Header() {
           </nav>
 
           <div className="menu-footer">
-            <a href="mailto:ssbedunkevich@edu.hse.ru">email</a>
+            <a href="mailto:simon@bedunkevich.com">email</a>
             <a href="https://t.me/rndzvoo" rel="noreferrer" target="_blank">
               telegram ↗
             </a>

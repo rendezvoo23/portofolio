@@ -8,10 +8,10 @@ export function ProjectGrid() {
   return (
     <section
       aria-label="Избранные проекты"
-      className="mx-auto max-w-[1440px] px-6 pb-24 pt-32 md:px-10 md:pb-36 md:pt-40"
+      className="mx-auto max-w-[1440px] px-5 pb-16 pt-24 md:px-10 md:pb-36 md:pt-40"
       id="projects"
     >
-      <div className="grid gap-20 md:gap-28">
+      <div className="grid gap-14 md:gap-28">
         {orderedProjects.map((project) => (
           <ProjectCard key={project.slug} project={project} />
         ))}

@@ -163,6 +163,10 @@ function ImageMedia({
 }
 
 function getImageCanvasClass(src: string) {
+  if (src.includes("whyspent_mockup_bento")) {
+    return "bg-[#1c1c1e]";
+  }
+
   if (src.includes("whyspent_mockup")) {
     return "bg-white";
   }

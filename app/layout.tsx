@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/Header";
+import { SiteLoader } from "@/components/SiteLoader";
 
 export const metadata: Metadata = {
   title: "Семен Бедункевич — портфолио",
@@ -12,6 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html data-scroll-behavior="smooth" lang="ru">
       <body>
+        <SiteLoader />
         <Header />
         {children}
       </body>
