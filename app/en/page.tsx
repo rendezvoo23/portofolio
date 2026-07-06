@@ -1,19 +1,17 @@
 import { About } from "@/components/About";
 import { ContactForm } from "@/components/ContactForm";
-import { Hero } from "@/components/Hero";
 import { Process } from "@/components/Process";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { Services } from "@/components/Services";
 
-export default function Home() {
+export default function EnglishHome() {
   return (
     <main>
-      <Hero />
-      <ProjectGrid locale="ru" />
-      <Services locale="ru" />
-      <About locale="ru" />
-      <Process locale="ru" />
-      <ContactForm locale="ru" />
+      <ProjectGrid locale="en" />
+      <Services locale="en" />
+      <About locale="en" />
+      <Process locale="en" />
+      <ContactForm locale="en" />
     </main>
   );
 }

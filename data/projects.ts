@@ -1,3 +1,5 @@
+import type { Locale } from "@/data/site";
+
 export type MediaKind = "browser" | "phone" | "video" | "dashboard" | "image";
 
 export type ProjectMediaItem = {
@@ -64,6 +66,7 @@ export const projects: Project[] = [
       detail: "Демо продукта FUP",
       aspect: "wide",
       videoSrc: "/media/fup_demo.mp4",
+      poster: "/media/fup_home_page.png",
       fit: "cover"
     },
     gallery: [
@@ -216,5 +219,106 @@ export const projects: Project[] = [
   }
 ];
 
-export const getProject = (slug: string) =>
-  projects.find((project) => project.slug === slug);
+type ProjectTranslation = Pick<
+  Project,
+  | "cardTitle"
+  | "subtitle"
+  | "role"
+  | "status"
+  | "category"
+  | "description"
+  | "overview"
+  | "task"
+  | "whatWasDone"
+  | "result"
+>;
+
+const englishProjectCopy: Record<Project["slug"], ProjectTranslation> = {
+  fup: {
+    cardTitle: "FUP — event networking",
+    subtitle: "An app for events and networking analytics",
+    role: "Co-founder and CTO",
+    status: "HSE Accelerator finalist",
+    category: "Event tech / Telegram Mini App / MVP",
+    description:
+      "A product that helps event organizers track guest activity and understand how networking develops during an event.",
+    overview:
+      "FUP helps event organizers understand how actively guests meet and communicate. After an event, the team receives clear data alongside their own observations.",
+    task:
+      "Build an MVP that shows participant activity and helps assess the quality of networking at an event.",
+    whatWasDone: [
+      "Designed the core MVP logic",
+      "Created user flows for participants and organizers",
+      "Defined the data structure for networking metrics",
+      "Prepared the key screens and product flows",
+      "Built the technical foundation for the accelerator presentation"
+    ],
+    result:
+      "The team reached the HSE Accelerator final. The project gained a working MVP structure and a foundation for future pilots."
+  },
+  whyspent: {
+    cardTitle: "WhySpent — expenses in Telegram",
+    subtitle: "Expense tracking and financial habit insights inside Telegram",
+    role: "Creator and developer",
+    status: undefined,
+    category: "Fintech / Telegram app / Personal finance",
+    description:
+      "A Telegram app for quickly recording purchases and reviewing spending by category.",
+    overview:
+      "WhySpent makes it easy to record expenses directly in Telegram. A user adds a purchase, selects a category, and immediately sees where their money goes.",
+    task:
+      "Make expense tracking fast and familiar without requiring a separate app or long forms.",
+    whatWasDone: [
+      "Designed the expense and category logic",
+      "Created a fast expense entry flow",
+      "Implemented data storage and user action handling",
+      "Designed the statistics interface",
+      "Developed the visual direction of the product"
+    ],
+    result:
+      "The project now has a working first release, a clear user flow, and a foundation for deeper financial analytics."
+  },
+  trv: {
+    cardTitle: "TRV — music label showcase",
+    subtitle: "A showcase for a music label’s releases, artists, and events",
+    role: "Developer",
+    status: "In development",
+    category: "Music tech / Telegram app",
+    description:
+      "An app that brings a music label’s releases, artists, team members, and events together in one place.",
+    overview:
+      "TRV is a digital showcase for a music label. Users can explore releases, artists, team members, and events. The product is designed to support new sections as it grows.",
+    task:
+      "Build the first release for the label’s audience and create a flexible foundation for future features.",
+    whatWasDone: [
+      "Designed the structure of the user-facing app",
+      "Built sections for releases, artists, team members, and events",
+      "Designed cards, detail pages, and product navigation",
+      "Developed an admin panel for content management",
+      "Prepared a working version for further development"
+    ],
+    result:
+      "The project has a working user-facing app and an admin panel. The product is currently in development."
+  }
+};
+
+const englishProjects: Project[] = projects.map((project) => ({
+  ...project,
+  ...englishProjectCopy[project.slug],
+  media: {
+    ...project.media,
+    label: `${project.title} preview`,
+    detail: `${project.title} product preview`
+  },
+  gallery: project.gallery.map((media, index) => ({
+    ...media,
+    label: `${project.title} project media`,
+    detail: `${project.title} project image ${index + 1}`
+  }))
+}));
+
+export const getProjects = (locale: Locale = "ru") =>
+  locale === "en" ? englishProjects : projects;
+
+export const getProject = (slug: string, locale: Locale = "ru") =>
+  getProjects(locale).find((project) => project.slug === slug);

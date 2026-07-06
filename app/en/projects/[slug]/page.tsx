@@ -15,27 +15,27 @@ export async function generateMetadata({
   params
 }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProject(slug);
+  const project = getProject(slug, "en");
 
   if (!project) {
     return {
-      title: "Проект не найден"
+      title: "Project not found"
     };
   }
 
   return {
-    title: `${project.title} — Семен Бедункевич`,
+    title: `${project.title} — Simon Bedunkevich`,
     description: project.subtitle
   };
 }
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
+export default async function EnglishProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = getProject(slug);
+  const project = getProject(slug, "en");
 
   if (!project) {
     notFound();
   }
 
-  return <ProjectDetailPage locale="ru" project={project} />;
+  return <ProjectDetailPage locale="en" project={project} />;
 }

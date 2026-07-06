@@ -1,3 +1,5 @@
+import { siteCopy, type Locale } from "@/data/site";
+
 const contacts = [
   {
     label: "Telegram",
@@ -11,13 +13,15 @@ const contacts = [
   }
 ];
 
-export function ContactForm() {
+export function ContactForm({ locale = "ru" }: { locale?: Locale }) {
+  const copy = siteCopy[locale];
+
   return (
     <section
       className="mx-auto max-w-[1440px] px-5 py-14 md:px-10 md:py-36"
       id="contact"
     >
-      <h2 className="portfolio-heading">давайте обсудим ваш проект</h2>
+      <h2 className="portfolio-heading">{copy.contactTitle}</h2>
       <div className="ml-auto mt-8 max-w-6xl rounded-[28px] bg-paper p-3 text-ink md:mt-14 md:rounded-[44px] md:p-5">
         <div className="grid gap-3 md:grid-cols-2">
           {contacts.map((contact) => (

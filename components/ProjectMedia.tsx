@@ -118,10 +118,10 @@ export function VideoPlaceholder({
           muted
           loop
           playsInline
-          preload="metadata"
+          preload={autoPlay ? "auto" : "metadata"}
           poster={poster}
         >
-          <source src={src} />
+          <source src={src} type="video/mp4" />
         </video>
       ) : (
         <div className="flex h-full w-full flex-col justify-between bg-bone p-5 text-ink md:p-8">
